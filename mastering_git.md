@@ -100,3 +100,113 @@ git push
 
 # [Status: Success ]
 - Notes:
+
+# [Goal]
+The Nautilus application development team has been working on a project repository /opt/media.git. This repo is cloned at /usr/src/kodekloudrepos on storage server in Stratos DC. They recently shared the following requirements with DevOps team:
+
+
+One of the developers is working on feature branch and their work is still in progress, however there are some changes which have been pushed into the master branch, the developer now wants to rebase the feature branch with the master branch without loosing any data from the feature branch, also they don't want to add any merge commit by simply merging the master branch into the feature branch. Accomplish this task as per requirements mentioned.
+
+Also remember to push your changes once done.
+
+
+# [Pseudocode]
+- switch to working space
+- status
+- fetch origin
+- checkout feature
+- rebase origin/master
+- push
+
+# [To-Do-List]
+
+- [change working space]
+```bash
+ssh natasha@ststor01
+```
+- [status]
+```bash
+git status
+```
+
+- [ensure origin]
+```bash
+git fetch origin/master
+```
+
+- [checkout]
+```bash
+git checkout feature
+```
+
+- [rebase]
+```bash
+git rebase origin/master
+```
+- [push]
+```bash
+git push origin <feature-branch-name> --force-with-lease
+```
+
+# [Edges]
+- Edge: []
+- Fix: []
+
+# [Status: Success / Failure]
+- Notes:
+
+# [Goal]
+Sarah and Max were working on writting some stories which they have pushed to the repository. Max has recently added some new changes and is trying to push them to the repository but he is facing some issues. Below you can find more details:
+
+SSH into storage server using user max and password Max_pass123. Under /home/max you will find the story-blog repository. Try to push the changes to the origin repo and fix the issues. The story-index.txt must have titles for all 4 stories. Additionally, there is a typo in The Lion and the Mooose line where Mooose should be Mouse.
+
+Click on the Gitea UI button on the top bar. You should be able to access the Gitea page. You can login to Gitea server from UI using username sarah and password Sarah_pass123 or username max and password Max_pass123.
+
+Note: For these kind of scenarios requiring changes to be done in a web UI, please take screenshots so that you can share it with us for review in case your task is marked incomplete. You may also consider using a screen recording software such as loom.com to record and share your work.
+
+# [Pseudocode]
+- connect
+- fix spelling
+- add
+- commit
+- push
+- conflict
+- fix file <<<<=====>>>> and extra entries
+- add
+- commit
+- push
+
+# [To-Do-List]
+- [connect]
+```bash
+ssh max@ststor01
+cd /home/max/story-blog
+```
+- [fix spelling]
+```bash
+vi /home/max/story-blog/story-index.txt
+```
+
+- [stage,commit and push]
+```bash
+git add .
+git commit -m "Fix typo in story-index.txt"
+git push origin master
+```
+# [Edges]
+- Edge: merge conflict
+- Fix: 
+```bash
+git pull origin master
+vi /home/max/story-blog/story-index.txt
+```
+- [stage,commit and push]
+```bash
+git add .
+git commit -m "fixed merge issue"
+git push origin master
+```
+[Status: Success]
+Notes: Ensure that when you fix the merge that you are retesting with the pipeline and that the right update is being implemented
+
+
