@@ -209,4 +209,37 @@ git push origin master
 [Status: Success]
 Notes: Ensure that when you fix the merge that you are retesting with the pipeline and that the right update is being implemented
 
+# [Goal]
+The Nautilus application development team was working on a git repository /opt/cluster.git which is cloned under /usr/src/kodekloudrepos directory present on Storage server in Stratos DC. The team want to setup a hook on this repository, please find below more details:
+
+
+    Merge the feature branch into the master branch, but before pushing your changes complete below point.
+
+    Create a post-update hook in this git repository so that whenever any changes are pushed to the master branch, it creates a release tag with name release-2023-06-15, where 2023-06-15 is supposed to be the current date. For example if today is 20th June, 2023 then the release tag must be release-2023-06-20. Make sure you test the hook at least once and create a release tag for today's release.
+
+    Finally remember to push your changes.
+    Note: Perform this task using the natasha user, and ensure the repository or existing directory permissions are not altered.
+
+
+
+'''bash
+git branch
+git switch master
+git merge feature
+
+#!/usr/bin/sh
+
+# address
+refname="$1"
+#past state
+oldrev="$2"
+#future state
+newref="$3"
+#current date
+current_date=$(date +"%Y-%m-%d")
+release_name=release-"$current_date"
+if [ "refname" = "refs/heads/master" ] ; then
+ mkdir -p "$PWD/$release_name"
+ echo "Created release directory at: $PWD/release_name"
+ fi
 
