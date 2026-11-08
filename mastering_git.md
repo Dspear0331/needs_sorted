@@ -50,24 +50,53 @@ Review and merge it.
 # Date: 2026-11-04
 ---
 # [Goal]
+The Nautilus application development team was working on a git repository /usr/src/kodekloudrepos/blog present on Storage server in Stratos DC. One of the developers stashed some in-progress changes in this repository, but now they want to restore some of the stashed changes. Find below more details to accomplish this task:
+
+
+Look for the stashed changes under /usr/src/kodekloudrepos/blog git repository, and restore the stash with stash@{1} identifier. Further, commit and push your changes to the origin.
 
 
 # [Pseudocode]
-
+- connect
+- check
+- revert
+- check
+- add
+- commit
+- push
 
 # [To-Do-List]
 
-- []
+- [connect to host]
 ```bash
-
+ssh natasha@ststor01
 ```
-- []
+- [check]
 ```bash
+# ensures there are no unintended uncommitted stages
+git status
+```
+- [revert]
+```bash
+git stash pop stash@{1}
+```
+- [check]
+```bash
+git status
+```
 
+- [add]
+```bash
+git commit "reverted to stash@{1}"
+```
+
+- [push]
+```bash
+git push
 ```
 # [Edges]
 - Edge: []
 - Fix: []
 
-# [Status: Success / Failure]
+# [Status: Success ]
 - Notes:
