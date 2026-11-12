@@ -222,24 +222,34 @@ The Nautilus application development team was working on a git repository /opt/c
 
 
 
-'''bash
-git branch
-git switch master
-git merge feature
+- [pseudo]
+* connect
+* locate bare repo
+* create post-update hook
+* switch dev env
+* merge
+* push
+* validate
 
-#!/usr/bin/sh
+- [task]
+* ssh natasha@ststor01
+* vi /opt/cluster.git/hooks/post-update
+```bash
+#!/bin/bash
 
-# address
-refname="$1"
-#past state
-oldrev="$2"
-#future state
-newref="$3"
-#current date
-current_date=$(date +"%Y-%m-%d")
-release_name=release-"$current_date"
-if [ "refname" = "refs/heads/master" ] ; then
- mkdir -p "$PWD/$release_name"
- echo "Created release directory at: $PWD/release_name"
- fi
+ref="$1"
+
+if [ "$ref" = "refs/heads/master" ] ; then
+ git_tag="release-$(date +%Y-%m-%d)
+git tag $git_tag
+fi
+```
+- [give execute]
+```bash
+chmod +x /opt/cluster.git/hooks/post-update
+```
+
+ to revert to a previous if no working tree --bare
+ ```bash
+git update-ref refs/heads/master/<hash>
 
