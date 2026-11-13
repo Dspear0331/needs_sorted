@@ -253,3 +253,12 @@ chmod +x /opt/cluster.git/hooks/post-update
  ```bash
 git update-ref refs/heads/master/<hash>
 
+ When do we need this? When you need to move a specific configuration file or script into a running container for testing. How to do this: Use the docker cp command. The Commands: docker cp index.html web-server:/usr/share/nginx/html/index.html Key Points & Execution:
+
+    You can copy files both into and out of containers. Expected Outcome: The file is instantly updated inside the container.
+
+10. Docker Pull Images
+
+When do we need this? To download pre-built images (Ubuntu, MySQL, Python) from Docker Hub to your local machine. How to do this: Use the pull command. The Commands: docker pull python:3.9-slim Key Points & Execution:
+
+    Specify "tags" (like 3.9-slim) to get specific versions. Expected Outcome: The image is visible in your docker images list.
